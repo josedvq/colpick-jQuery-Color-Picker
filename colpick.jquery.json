@@ -2,13 +2,14 @@
 	"name": "colpick",
 	"title": "colpick Color Picker",
 	"description": "Simple lightweight Photoshop-like color picker",
-	"keywords": ["color","picker","colorpicker","choser"],
-	"version": "1.0.0",
+	"keywords": ["color","picker","colorpicker","choser","selector","form","jquery","input"],
+	"version": "1.0.1",
 	"author": {"name": "Jose Vargas","email": "josedvq@gmail.com", "url": "http://codeitdown.com"},
+	"maintainers": [{"name": "Jose Vargas","email": "josedvq@gmail.com", "url": "http://codeitdown.com"}],
 	"licenses": [{"type": "GPLv2", "url": "https://github.com/josedvq/colpick-jQuery-Color-Picker/blob/master/LICENSE"}],
-	"bugs": "http://colpick.com/plugin",
+	"bugs": "https://github.com/josedvq/colpick-jQuery-Color-Picker/issues",
 	"homepage": "http://colpick.com/plugin",
 	"docs": "http://colpick.com/plugin",
-	"download": "http://colpick.com/plugin",
-	"dependencies": {"jquery": ">=1.4.3"}
+	"download": "https://github.com/josedvq/colpick-jQuery-Color-Picker/archive/master.zip",
+	"dependencies": {"jquery": ">=1.7.0"}
 }

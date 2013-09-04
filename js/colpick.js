@@ -1,21 +1,7 @@
 /*
 colpick Color Picker / colpick.com
 Copyright 2013 Jose Vargas. Licensed under GPL license.
-	
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Based on Stefan Petre's Color Picker www.eyecon.ro, dual licensed under the MIT and GPL licenses
+Based on Stefan Petre's Color Picker, dual licensed under the MIT and GPL licenses
  */
 
 (function ($) {
@@ -79,21 +65,22 @@ Based on Stefan Petre's Color Picker www.eyecon.ro, dual licensed under the MIT 
 				var cal = $(this).parent().parent(), col;
 				if (this.parentNode.className.indexOf('_hex') > 0) {
 					cal.data('colpick').color = col = HexToHSB(fixHex(this.value));
+					fillRGBFields(col, cal.get(0));
+					fillHSBFields(col, cal.get(0));
 				} else if (this.parentNode.className.indexOf('_hsb') > 0) {
 					cal.data('colpick').color = col = fixHSB({
 						h: parseInt(cal.data('colpick').fields.eq(4).val(), 10),
 						s: parseInt(cal.data('colpick').fields.eq(5).val(), 10),
 						b: parseInt(cal.data('colpick').fields.eq(6).val(), 10)
 					});
+					fillRGBFields(col, cal.get(0));
+					fillHexFields(col, cal.get(0));
 				} else {
 					cal.data('colpick').color = col = RGBToHSB(fixRGB({
 						r: parseInt(cal.data('colpick').fields.eq(1).val(), 10),
 						g: parseInt(cal.data('colpick').fields.eq(2).val(), 10),
 						b: parseInt(cal.data('colpick').fields.eq(3).val(), 10)
 					}));
-				}
-				if (ev) {
-					fillRGBFields(col, cal.get(0));
 					fillHexFields(col, cal.get(0));
 					fillHSBFields(col, cal.get(0));
 				}
@@ -486,6 +473,7 @@ Based on Stefan Petre's Color Picker www.eyecon.ro, dual licensed under the MIT 
 			}
 		};
 	}();
+	
 	$.fn.extend({
 		colpick: colpick.init,
 		colpickHide: colpick.hidePicker,
