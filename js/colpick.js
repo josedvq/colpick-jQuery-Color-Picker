@@ -34,9 +34,9 @@ Based on Stefan Petre's Color Picker, dual licensed under the MIT and GPL licens
 			},
 			fillHSBFields = function  (hsb, cal) {
 				$(cal).data('colpick').fields
-					.eq(4).val(Math.round(hsb.h*10)/10).end()
-					.eq(5).val(Math.round(hsb.s*10)/10).end()
-					.eq(6).val(Math.round(hsb.b*10)/10).end();
+					.eq(4).val(Math.round(hsb.h)).end()
+					.eq(5).val(Math.round(hsb.s)).end()
+					.eq(6).val(Math.round(hsb.b)).end();
 			},
 			fillHexFields = function (hsb, cal) {
 				$(cal).data('colpick').fields.eq(0).val(HSBToHex(hsb));
