@@ -321,13 +321,15 @@ For usage and examples: colpick.com/plugin
 						options.el = this;
 						options.hue = cal.find('div.colpick_hue_arrs');
 						huebar = options.hue.parent();
-						//Paint the hue bar
-						var UA = navigator.userAgent.toLowerCase();
-						var isIE = navigator.appName === 'Microsoft Internet Explorer';
-						var IEver = isIE ? parseFloat( UA.match( /msie ([0-9]{1,}[\.0-9]{0,})/ )[1] ) : 0;
-						var ngIE = ( isIE && IEver < 10 );
+						
+						
+						var nonGradientIE, UA, isIE, IEVersion;
+						UA = navigator.userAgent.toLowerCase();
+						isIE = navigator.appName === 'Microsoft Internet Explorer';
+						IEVersion = isIE ? parseFloat( UA.match( /msie ([0-9]{1,}[\.0-9]{0,})/ )[1] ) : 0;
+						nonGradientIE = ( isIE && IEVersion < 10 );
 						var stops = ['#ff0000','#ff0080','#ff00ff','#8000ff','#0000ff','#0080ff','#00ffff','#00ff80','#00ff00','#80ff00','#ffff00','#ff8000','#ff0000'];
-						if(ngIE) {
+						if(nonGradientIE) {
 							var i, div;
 							for(i=0; i<=11; i++) {
 								div = $('<div></div>').attr('style','height:8.333333%; filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='+stops[i]+', endColorstr='+stops[i+1]+'); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='+stops[i]+', endColorstr='+stops[i+1]+')";');
@@ -339,6 +341,8 @@ For usage and examples: colpick.com/plugin
 							huebar.css({'background':'linear-gradient(to bottom,'+stopList+')'});
 							huebar.css({'background':'-moz-linear-gradient(top,'+stopList+')'});
 						}
+						
+						
 						cal.find('div.colpick_hue').mousedown(downHue);
 						options.newColor = cal.find('div.colpick_new_color');
 						options.currentColor = cal.find('div.colpick_current_color');
