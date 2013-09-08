@@ -224,14 +224,12 @@ For usage and examples: colpick.com/plugin
 				//Hide when user clicks outside
 				$('html').mousedown({cal:cal}, hide);
 				cal.mousedown(function(ev){ev.stopPropagation();})
-				return false;
 			},
 			hide = function (ev) {
 				if (ev.data.cal.data('colpick').onHide.apply(this, [ev.data.cal.get(0)]) != false) {
 					ev.data.cal.hide();
 				}
 				$('html').off('mousedown', hide);
-				return false;
 			},
 			getViewport = function () {
 				var m = document.compatMode == 'CSS1Compat';
@@ -408,7 +406,7 @@ For usage and examples: colpick.com/plugin
 						setSelector(col, cal.get(0));
 						
 						setNewColor(col, cal.get(0));
-						cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col)]);
+						cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), 1]);
 						if(setCurrent) {
 							setCurrentColor(col, cal.get(0));
 						}
