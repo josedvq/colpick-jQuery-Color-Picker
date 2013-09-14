@@ -8,7 +8,7 @@ For usage and examples: colpick.com/plugin
 (function ($) {
 	var colpick = function () {
 		var
-			tpl = '<div class="colpick"><div class="colpick_color"><div class="colpick_color_overlay1"><div class="colpick_color_overlay2"><div class="colpick_selector_outer"><div class="colpick_selector_inner"></div></div></div></div></div><div class="colpick_hue"><div class="colpick_hue_arrs"><div class="colpick_hue_larr"></div><div class="colpick_hue_rarr"></div></div></div><div class="colpick_new_color"></div><div class="colpick_current_color"></div><div class="colpick_rgb_r colpick_field"><div class="colpick_field_letter">R</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_hsb_h colpick_field"><div class="colpick_field_letter">H</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_rgb_g colpick_field"><div class="colpick_field_letter">G</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_hsb_s colpick_field"><div class="colpick_field_letter">S</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_rgb_b colpick_field"><div class="colpick_field_letter">B</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_hsb_b colpick_field"><div class="colpick_field_letter">B</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"></div><div class="colpick_field_darr"></div></div></div><div class="colpick_hex_field"><div class="colpick_field_letter">#</div><input type="text" maxlength="6" size="6" /></div><div class="colpick_submit"></div><div style="clear:both"></div></div>',
+			tpl = '<div class="colpick"><div class="colpick_color"><div class="colpick_color_overlay1"><div class="colpick_color_overlay2"><div class="colpick_selector_outer"><div class="colpick_selector_inner"></div></div></div></div></div><div class="colpick_hue"><div class="colpick_hue_arrs"><div class="colpick_hue_larr"><div></div></div><div class="colpick_hue_rarr"><div></div></div></div></div><div class="colpick_new_color"></div><div class="colpick_current_color"></div><div class="colpick_rgb_r colpick_field"><div class="colpick_field_letter">R</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_hsb_h colpick_field"><div class="colpick_field_letter">H</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_rgb_g colpick_field"><div class="colpick_field_letter">G</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_hsb_s colpick_field"><div class="colpick_field_letter">S</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_rgb_b colpick_field"><div class="colpick_field_letter">B</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_hsb_b colpick_field"><div class="colpick_field_letter">B</div><input type="text" maxlength="3" size="3" /><div class="colpick_field_arrs"><div class="colpick_field_uarr"><div></div></div><div class="colpick_field_darr"><div></div></div></div></div><div class="colpick_hex_field"><div class="colpick_field_letter">#</div><input type="text" maxlength="6" size="6" /></div><div class="colpick_submit"></div></div>',
 			defaults = {
 				showEvent: 'click',
 				onShow: function () {},
@@ -23,32 +23,31 @@ For usage and examples: colpick.com/plugin
 				layout: 'full',
 				submit: 1,
 				submitText: 'OK',
-				width: 346,
-				height: 170
+				width: 346
 			},
 			//Fill the inputs of the plugin
 			fillRGBFields = function  (hsb, cal) {
 				var rgb = hsbToRgb(hsb);
 				$(cal).data('colpick').fields
-					.eq(1).val(rgb.r).end()
+					.eq(0).val(rgb.r).end()
 					.eq(2).val(rgb.g).end()
-					.eq(3).val(rgb.b).end();
+					.eq(4).val(rgb.b).end();
 			},
 			fillHSBFields = function  (hsb, cal) {
 				$(cal).data('colpick').fields
-					.eq(4).val(Math.round(hsb.h)).end()
-					.eq(5).val(Math.round(hsb.s)).end()
-					.eq(6).val(Math.round(hsb.b)).end();
+					.eq(1).val(Math.round(hsb.h)).end()
+					.eq(3).val(Math.round(hsb.s)).end()
+					.eq(5).val(Math.round(hsb.b)).end();
 			},
 			fillHexFields = function (hsb, cal) {
-				$(cal).data('colpick').fields.eq(0).val(hsbToHex(hsb));
+				$(cal).data('colpick').fields.eq(6).val(hsbToHex(hsb));
 			},
 			//Set the round selector position
 			setSelector = function (hsb, cal) {
 				$(cal).data('colpick').selector.css('backgroundColor', '#' + hsbToHex({h: hsb.h, s: 100, b: 100}));
 				$(cal).data('colpick').selectorIndic.css({
-					left: parseInt($(cal).data('colpick').height * hsb.s/100, 10),
-					top: parseInt($(cal).data('colpick').height * (100-hsb.b)/100, 10)
+					'left': parseInt($(cal).data('colpick').height * hsb.s/100, 10),
+					'top': parseInt($(cal).data('colpick').height * (100-hsb.b)/100, 10)
 				});
 			},
 			//Set the hue selector position
@@ -71,17 +70,17 @@ For usage and examples: colpick.com/plugin
 					fillHSBFields(col, cal.get(0));
 				} else if (this.parentNode.className.indexOf('_hsb') > 0) {
 					cal.data('colpick').color = col = fixHSB({
-						h: parseInt(cal.data('colpick').fields.eq(4).val(), 10),
-						s: parseInt(cal.data('colpick').fields.eq(5).val(), 10),
-						b: parseInt(cal.data('colpick').fields.eq(6).val(), 10)
+						h: parseInt(cal.data('colpick').fields.eq(1).val(), 10),
+						s: parseInt(cal.data('colpick').fields.eq(3).val(), 10),
+						b: parseInt(cal.data('colpick').fields.eq(5).val(), 10)
 					});
 					fillRGBFields(col, cal.get(0));
 					fillHexFields(col, cal.get(0));
 				} else {
 					cal.data('colpick').color = col = rgbToHsb(fixRGB({
-						r: parseInt(cal.data('colpick').fields.eq(1).val(), 10),
+						r: parseInt(cal.data('colpick').fields.eq(0).val(), 10),
 						g: parseInt(cal.data('colpick').fields.eq(2).val(), 10),
-						b: parseInt(cal.data('colpick').fields.eq(3).val(), 10)
+						b: parseInt(cal.data('colpick').fields.eq(4).val(), 10)
 					}));
 					fillHexFields(col, cal.get(0));
 					fillHSBFields(col, cal.get(0));
@@ -141,7 +140,7 @@ For usage and examples: colpick.com/plugin
 				
 				change.apply(
 					current.cal.data('colpick')
-					.fields.eq(4).val(parseInt(360*(current.cal.data('colpick').height - (ev.pageY - current.y))/current.cal.data('colpick').height, 10))
+					.fields.eq(1).val(parseInt(360*(current.cal.data('colpick').height - (ev.pageY - current.y))/current.cal.data('colpick').height, 10))
 						.get(0),
 					[current.preview]
 				);
@@ -149,7 +148,7 @@ For usage and examples: colpick.com/plugin
 			moveHue = function (ev) {
 				change.apply(
 					ev.data.cal.data('colpick')
-					.fields.eq(4).val(parseInt(360*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.y))))/ev.data.cal.data('colpick').height, 10))
+					.fields.eq(1).val(parseInt(360*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.y))))/ev.data.cal.data('colpick').height, 10))
 						.get(0),
 					[ev.data.preview]
 				);
@@ -176,8 +175,8 @@ For usage and examples: colpick.com/plugin
 				
 				change.apply(
 					current.cal.data('colpick').fields
-					.eq(6).val(parseInt(100*(current.cal.data('colpick').height - (ev.pageY - current.pos.top))/current.cal.data('colpick').height, 10)).end()
-					.eq(5).val(parseInt(100*(ev.pageX - current.pos.left)/current.cal.data('colpick').height, 10))
+					.eq(5).val(parseInt(100*(current.cal.data('colpick').height - (ev.pageY - current.pos.top))/current.cal.data('colpick').height, 10)).end()
+					.eq(3).val(parseInt(100*(ev.pageX - current.pos.left)/current.cal.data('colpick').height, 10))
 					.get(0),
 					[current.preview]
 				);
@@ -185,8 +184,8 @@ For usage and examples: colpick.com/plugin
 			moveSelector = function (ev) {
 				change.apply(
 					ev.data.cal.data('colpick').fields
-					.eq(6).val(parseInt(100*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.pos.top))))/ev.data.cal.data('colpick').height, 10)).end()
-					.eq(5).val(parseInt(100*(Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageX - ev.data.pos.left))))/ev.data.cal.data('colpick').height, 10))
+					.eq(5).val(parseInt(100*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.pos.top))))/ev.data.cal.data('colpick').height, 10)).end()
+					.eq(3).val(parseInt(100*(Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageX - ev.data.pos.left))))/ev.data.cal.data('colpick').height, 10))
 					.get(0),
 					[ev.data.preview]
 				);
@@ -303,7 +302,7 @@ For usage and examples: colpick.com/plugin
 						//Set the tpl's ID and get the HTML
 						var cal = $(tpl).attr('id', id);
 						//Add class according to layout
-						cal.addClass('colpick_'+options.layout+(options.submit?'':' colpick_'+options.layout+'_ns')).width(options.width).height(options.height);
+						cal.addClass('colpick_'+options.layout+(options.submit?'':' colpick_'+options.layout+'_ns')).width(options.width).height(0.49132948*options.width);
 						//cal.find('div.colpick_color').height(156);
 						//Add class if the color scheme is not default
 						if(options.colorScheme != 'light') {
@@ -354,9 +353,9 @@ For usage and examples: colpick.com/plugin
 						//Append to body if flat=false, else show in place
 						if (options.flat) {
 							cal.appendTo(this).show();
-							var selectorHeight = options.selector.width();
-							options.selector.height(selectorHeight);
-							huebar.height(selectorHeight);
+							options.height = options.selector.width();
+							options.selector.height(options.height);
+							huebar.height(options.height);
 							cal.css({
 								position: 'relative',
 								display: 'block'
