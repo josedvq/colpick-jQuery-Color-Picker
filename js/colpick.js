@@ -88,7 +88,7 @@ For usage and examples: colpick.com/plugin
 				setSelector(col, cal.get(0));
 				setHue(col, cal.get(0));
 				setNewColor(col, cal.get(0));
-				cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col)]);
+				cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), cal.data('colpick').el, 0]);
 			},
 			//Change style on blur and on focus of inputs
 			blur = function (ev) {
@@ -408,7 +408,7 @@ For usage and examples: colpick.com/plugin
 						setSelector(col, cal.get(0));
 						
 						setNewColor(col, cal.get(0));
-						cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), 1]);
+						cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), cal.data('colpick').el, 1]);
 						if(setCurrent) {
 							setCurrentColor(col, cal.get(0));
 						}
