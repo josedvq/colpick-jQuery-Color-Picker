@@ -494,4 +494,4 @@ For usage and examples: colpick.com/plugin
 		colpickHexToHsb: hexToHsb,
 		colpickHexToRgb: hexToRgb
 	});
-})(jQuery)
+})(jQuery);
