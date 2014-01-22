@@ -445,9 +445,9 @@ For usage and examples: colpick.com/plugin
 	};
 	var hsbToRgb = function (hsb) {
 		var rgb = {};
-		var h = Math.round(hsb.h);
-		var s = Math.round(hsb.s*255/100);
-		var v = Math.round(hsb.b*255/100);
+		var h = hsb.h;
+		var s = hsb.s*255/100;
+		var v = hsb.b*255/100;
 		if(s == 0) {
 			rgb.r = rgb.g = rgb.b = v;
 		} else {
