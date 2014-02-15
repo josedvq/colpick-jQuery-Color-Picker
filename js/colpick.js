@@ -216,8 +216,9 @@ For usage and examples: colpick.com/plugin
 				var top = pos.top + this.offsetHeight;
 				var left = pos.left;
 				var viewPort = getViewport();
-				if (left + 346 > viewPort.l + viewPort.w) {
-					left -= 346;
+				var calW = cal.width();
+				if (left + calW > viewPort.l + viewPort.w) {
+					left -= calW;
 				}
 				cal.css({left: left + 'px', top: top + 'px'});
 				if (cal.data('colpick').onShow.apply(this, [cal.get(0)]) != false) {
