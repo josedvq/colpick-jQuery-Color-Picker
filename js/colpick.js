@@ -134,21 +134,23 @@ For usage and examples: colpick.com/plugin
 					cal: $(this).parent(),
 					y: $(this).offset().top
 				};
-				current.preview = current.cal.data('colpick').livePreview;
-				$(document).mouseup(current, upHue);
-				$(document).mousemove(current, moveHue);
+				$(document).on('mouseup touchend',current,upHue);
+				$(document).on('mousemove touchmove',current,moveHue);
 				
+				var pageY = ((ev.type == 'touchstart') ? ev.originalEvent.changedTouches[0].pageY : ev.pageY );
 				change.apply(
 					current.cal.data('colpick')
-					.fields.eq(4).val(parseInt(360*(current.cal.data('colpick').height - (ev.pageY - current.y))/current.cal.data('colpick').height, 10))
+					.fields.eq(4).val(parseInt(360*(current.cal.data('colpick').height - (pageY - current.y))/current.cal.data('colpick').height, 10))
 						.get(0),
-					[current.preview]
+					[current.cal.data('colpick').livePreview]
 				);
+				return false;
 			},
 			moveHue = function (ev) {
+				var pageY = ((ev.type == 'touchmove') ? ev.originalEvent.changedTouches[0].pageY : ev.pageY );
 				change.apply(
 					ev.data.cal.data('colpick')
-					.fields.eq(4).val(parseInt(360*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.y))))/ev.data.cal.data('colpick').height, 10))
+					.fields.eq(4).val(parseInt(360*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(pageY - ev.data.y))))/ev.data.cal.data('colpick').height, 10))
 						.get(0),
 					[ev.data.preview]
 				);
@@ -157,8 +159,8 @@ For usage and examples: colpick.com/plugin
 			upHue = function (ev) {
 				fillRGBFields(ev.data.cal.data('colpick').color, ev.data.cal.get(0));
 				fillHexFields(ev.data.cal.data('colpick').color, ev.data.cal.get(0));
-				$(document).off('mouseup', upHue);
-				$(document).off('mousemove', moveHue);
+				$(document).off('mouseup touchend',upHue);
+				$(document).off('mousemove touchmove',moveHue);
 				return false;
 			},
 			//Color selector functions
@@ -170,22 +172,41 @@ For usage and examples: colpick.com/plugin
 				};
 				current.preview = current.cal.data('colpick').livePreview;
 				
-				$(document).mouseup(current, upSelector);
-				$(document).mousemove(current, moveSelector);
-				
+				$(document).on('mouseup touchend',current,upSelector);
+				$(document).on('mousemove touchmove',current,moveSelector);
+
+				var payeX,pageY;
+				if(ev.type == 'touchstart') {
+					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageY = ev.originalEvent.changedTouches[0].pageY;
+				} else {
+					pageX = ev.pageX;
+					pageY = ev.pageY;
+				}
+
 				change.apply(
 					current.cal.data('colpick').fields
-					.eq(6).val(parseInt(100*(current.cal.data('colpick').height - (ev.pageY - current.pos.top))/current.cal.data('colpick').height, 10)).end()
-					.eq(5).val(parseInt(100*(ev.pageX - current.pos.left)/current.cal.data('colpick').height, 10))
+					.eq(6).val(parseInt(100*(current.cal.data('colpick').height - (pageY - current.pos.top))/current.cal.data('colpick').height, 10)).end()
+					.eq(5).val(parseInt(100*(pageX - current.pos.left)/current.cal.data('colpick').height, 10))
 					.get(0),
 					[current.preview]
 				);
+				return false;
 			},
 			moveSelector = function (ev) {
+				var payeX,pageY;
+				if(ev.type == 'touchmove') {
+					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageY = ev.originalEvent.changedTouches[0].pageY;
+				} else {
+					pageX = ev.pageX;
+					pageY = ev.pageY;
+				}
+
 				change.apply(
 					ev.data.cal.data('colpick').fields
-					.eq(6).val(parseInt(100*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageY - ev.data.pos.top))))/ev.data.cal.data('colpick').height, 10)).end()
-					.eq(5).val(parseInt(100*(Math.max(0,Math.min(ev.data.cal.data('colpick').height,(ev.pageX - ev.data.pos.left))))/ev.data.cal.data('colpick').height, 10))
+					.eq(6).val(parseInt(100*(ev.data.cal.data('colpick').height - Math.max(0,Math.min(ev.data.cal.data('colpick').height,(pageY - ev.data.pos.top))))/ev.data.cal.data('colpick').height, 10)).end()
+					.eq(5).val(parseInt(100*(Math.max(0,Math.min(ev.data.cal.data('colpick').height,(pageX - ev.data.pos.left))))/ev.data.cal.data('colpick').height, 10))
 					.get(0),
 					[ev.data.preview]
 				);
@@ -194,8 +215,8 @@ For usage and examples: colpick.com/plugin
 			upSelector = function (ev) {
 				fillRGBFields(ev.data.cal.data('colpick').color, ev.data.cal.get(0));
 				fillHexFields(ev.data.cal.data('colpick').color, ev.data.cal.get(0));
-				$(document).off('mouseup', upSelector);
-				$(document).off('mousemove', moveSelector);
+				$(document).off('mouseup touchend',upSelector);
+				$(document).off('mousemove touchmove',moveSelector);
 				return false;
 			},
 			//Submit button
@@ -316,7 +337,7 @@ For usage and examples: colpick.com/plugin
 						options.fields = cal.find('input').change(change).blur(blur).focus(focus);
 						cal.find('div.colpick_field_arrs').mousedown(downIncrement).end().find('div.colpick_current_color').click(restoreOriginal);
 						//Setup hue selector
-						options.selector = cal.find('div.colpick_color').mousedown(downSelector);
+						options.selector = cal.find('div.colpick_color').on('mousedown touchstart',downSelector);
 						options.selectorIndic = options.selector.find('div.colpick_selector_outer');
 						//Store parts of the plugin
 						options.el = this;
@@ -338,7 +359,7 @@ For usage and examples: colpick.com/plugin
 							stopList = stops.join(',');
 							huebar.attr('style','background:-webkit-linear-gradient(top center,'+stopList+'); background:-moz-linear-gradient(top center,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
 						}
-						cal.find('div.colpick_hue').mousedown(downHue);
+						cal.find('div.colpick_hue').on('mousedown touchstart',downHue);
 						options.newColor = cal.find('div.colpick_new_color');
 						options.currentColor = cal.find('div.colpick_current_color');
 						//Store options and fill with default color
@@ -480,7 +501,6 @@ For usage and examples: colpick.com/plugin
 	var hsbToHex = function (hsb) {
 		return rgbToHex(hsbToRgb(hsb));
 	};
-	
 	$.fn.extend({
 		colpick: colpick.init,
 		colpickHide: colpick.hidePicker,
