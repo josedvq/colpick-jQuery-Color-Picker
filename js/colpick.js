@@ -337,8 +337,6 @@ For usage and examples: colpick.com/plugin
 						} else {
 							stopList = stops.join(',');
 							huebar.attr('style','background:-webkit-linear-gradient(top center,'+stopList+'); background:-moz-linear-gradient(top center,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
-							huebar.css({'background':'linear-gradient(to bottom,'+stopList+')'});
-							huebar.css({'background':'-moz-linear-gradient(top,'+stopList+')'});
 						}
 						cal.find('div.colpick_hue').mousedown(downHue);
 						options.newColor = cal.find('div.colpick_new_color');
@@ -490,11 +488,13 @@ For usage and examples: colpick.com/plugin
 		colpickSetColor: colpick.setColor
 	});
 	$.extend({
-		colpickRgbToHex: rgbToHex,
-		colpickRgbToHsb: rgbToHsb,
-		colpickHsbToHex: hsbToHex,
-		colpickHsbToRgb: hsbToRgb,
-		colpickHexToHsb: hexToHsb,
-		colpickHexToRgb: hexToRgb
+		colpick:{ 
+			rgbToHex: rgbToHex,
+			rgbToHsb: rgbToHsb,
+			hsbToHex: hsbToHex,
+			hsbToRgb: hsbToRgb,
+			hexToHsb: hexToHsb,
+			hexToRgb: hexToRgb
+		}
 	});
 })(jQuery);
