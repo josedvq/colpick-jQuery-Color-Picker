@@ -357,7 +357,7 @@ For usage and examples: colpick.com/plugin
 							}
 						} else {
 							stopList = stops.join(',');
-							huebar.attr('style','background:-webkit-linear-gradient(top center,'+stopList+'); background:-moz-linear-gradient(top center,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
+							huebar.attr('style','background:-webkit-linear-gradient(top,'+stopList+'); background: -o-linear-gradient(top,'+stopList+'); background: -ms-linear-gradient(top,'+stopList+'); background:-moz-linear-gradient(top,'+stopList+'); -webkit-linear-gradient(top,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
 						}
 						cal.find('div.colpick_hue').on('mousedown touchstart',downHue);
 						options.newColor = cal.find('div.colpick_new_color');
