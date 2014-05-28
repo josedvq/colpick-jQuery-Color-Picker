@@ -229,8 +229,10 @@ For usage and examples: colpick.com/plugin
 			},
 			//Show/hide the color picker
 			show = function (ev) {
-				// Prevent the trigger of any direct parent
-				ev.stopPropagation();
+				if(ev) {
+					 // Prevent the trigger of any direct parent
+					ev.stopPropagation();
+				}
 				var cal = $('#' + $(this).data('colpickId'));
 				cal.data('colpick').onBeforeShow.apply(this, [cal.get(0)]);
 				var pos = $(this).offset();
