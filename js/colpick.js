@@ -379,7 +379,7 @@ For usage and examples: colpick.com/plugin
 								display: 'block'
 							});
 						} else {
-							cal.appendTo(document.body);
+							cal.appendTo($(this).parent());
 							$(this).on(options.showEvent, show);
 							cal.css({
 								position:'absolute'
