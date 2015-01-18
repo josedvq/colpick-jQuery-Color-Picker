@@ -235,7 +235,7 @@ For usage and examples: colpick.com/plugin
 					ev.stopPropagation();
 				}
 				var cal = $('#' + $(this).data('colpickId'));
-                if (!cal.data('colpick').polyfill) {
+                if (ev && !cal.data('colpick').polyfill) {
                     ev.preventDefault();
                 }
 				cal.data('colpick').onBeforeShow.apply(this, [cal.get(0)]);
