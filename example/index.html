@@ -49,13 +49,13 @@
     </script>
     
     
-    <h3>Text Input and rgbhex layout</h3>
+    <h3>Text Input and colorScheme 'dark'</h3>
     <p>
         <input type="text" id="example-text" value="#FF0000">
     </p>
     <p>
         <code>$('#example-text').colpick({
-    layout:'rgbhex',
+    colorScheme:'dark',
     onChange:function(hsb,hex,rgb,el,bySetColor) {
         $(el).val('#'+hex);
     }
@@ -63,6 +63,7 @@
     </p>
     <script>
         $('#example-text').colpick({
+            colorScheme:'dark',
             onChange:function(hsb,hex,rgb,el,bySetColor) {
                 $(el).val('#'+hex);
             }
