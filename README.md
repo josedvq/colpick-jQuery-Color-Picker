@@ -24,7 +24,7 @@ Now you may call the colpick method on any jQuery object to create a color picke
 $('#colorpicker').colpick();
 ```
 
-For more examples see [Usage examples](tree/master/example/index.html).
+For more examples see [Usage examples](example/index.html).
 
 
 ##Options##
