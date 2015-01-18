@@ -14,6 +14,11 @@ For instructions and examples see: http://colpick.com/plugin
 			<li>Extremely easy to implement</li>
 </ul>
 
+<h2>Changes to josedvq's version</h2>
+<ul>
+			<li><span class="bold">Polyfill:</span> New option 'polyfill' (boolean or function). Default false. If true, the plugin is only used when native browser behavior is not available. Set to function(ele) {} to determine polyfill option dynamicly, e.g. by user-agent (because the windows colorpicker sucks).</li> 
+</ul>
+
 <h2>Layouts</h2>
 <table>
   <tr>
