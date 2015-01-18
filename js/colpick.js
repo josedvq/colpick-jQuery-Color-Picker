@@ -250,8 +250,12 @@ For usage and examples: colpick.com/plugin
 				cal.mousedown(function(ev){ev.stopPropagation();})
 			},
 			hide = function (ev) {
-				if (ev.data.cal.data('colpick').onHide.apply(this, [ev.data.cal.get(0)]) != false) {
-					ev.data.cal.hide();
+                var cal = $('#' + $(this).data('colpickId'));
+                if (ev) {
+                    cal = ev.data.cal;
+                }
+				if (cal.data('colpick').onHide.apply(this, [cal.get(0)]) != false) {
+					cal.hide();
 				}
 				$('html').off('mousedown', hide);
 			},
@@ -400,7 +404,7 @@ For usage and examples: colpick.com/plugin
 			hidePicker: function() {
 				return this.each( function () {
 					if ($(this).data('colpickId')) {
-						$('#' + $(this).data('colpickId')).hide();
+                        hide.apply(this);
 					}
 				});
 			},
