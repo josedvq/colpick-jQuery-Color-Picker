@@ -69,15 +69,27 @@
         });
     </script>
     
-    <h3>Color Input</h3>
+    <h3>HTML5 Color Input</h3>
     <p>
         <input type="color" id="example-color" value="#FF0000">
     </p>
     <p>
-        <code>$('#example-color').colpick();</code>
+        <code>$('#example-color').colpick({
+    color:'#FF0000',
+    onSubmit:function(hsb,hex,rgb,el,bySetColor) {
+        $(el).val('#'+hex);
+        $(el).colpickHide();
+    }
+});</code>
     </p>
     <script>
-        $('#example-color').colpick();
+        $('#example-color').colpick({
+            color:'#FF0000',
+            onSubmit:function(hsb,hex,rgb,el,bySetColor) {
+                $(el).val('#'+hex);
+                $(el).colpickHide();
+            }
+        });
     </script>
     
     
