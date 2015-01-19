@@ -138,6 +138,44 @@ For more examples see [Usage examples](example/index.html).
   </tbody>
 </table>
     
+    
+##jQuery Functions##
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$.colpick.rgbToHex(rgb)</td>
+      <td>Receives an object like {r:255, g:0, b:0} and returns the corresponding HEX string (with no #).</td>
+    </tr>
+    <tr>
+      <td>$.colpick.rgbToHsb(rgb)</td>
+      <td>Receives an object like {r:255, g:0, b:0} and returns the corresponding HSB object (eg. {h:0, s:100, b:100}). HSB values are not rounded. H is in the [0,360] range, while S and B are in the [0,100] range.</td>
+    </tr>
+    <tr>
+      <td>$.colpick.hsbToHex(hsb)</td>
+      <td>Receives an object like {h:0, s:100, b:100} and returns the corresponding HEX string (with no #).</td>
+    </tr>
+    <tr>
+      <td>$.colpick.hsbToRgb(hsb)</td>
+      <td>Receives an object like {h:0, s:100, b:100} and returns the corresponding RGB object (eg. {r:255, g:0, b:0}). RGB values are whole numbers in the [0,255] range.</td>
+    </tr>
+    <tr>
+      <td>$.colpick.hexToHsb(hex)</td>
+      <td>Receives a hex string with no # and returns the corresponding HSB object (eg. {h:0, s:100, b:100}). HSB values are not rounded. H is in the [0,360] range, while S and B are in the [0,100] range.</td>
+    </tr>
+    <tr>
+      <td>$.colpick.hexToRgb(hex)</td>
+      <td>Receives a hex string with no # and returns the corresponding RGB object (eg. {r:255, g:0, b:0}). RGB values are whole numbers in the [0,255] range.</td>
+    </tr>
+  </tbody>
+</table>
+	
+  
 ##Layouts##
 <table>
   <thead>
@@ -166,6 +204,7 @@ For more examples see [Usage examples](example/index.html).
 ##Changes to josedvq's version##
 * **Polyfill:** New option 'polyfill' to work with native color input fields
 * **Auto color:** Get the default color from an element's 'value' attribute using jQuery function .val()
+* **UMD compatibility:** Uses an UMD style closure to be loadable with AMD loaders (require.js) or CommonJS 
 * **Fixed Issues:** [#16](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/16), [#17](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/17)
 
 
