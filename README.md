@@ -59,7 +59,7 @@ For more examples see [Usage examples](example/index.html).
     </tr>
     <tr>
       <td>color</td><td>string or object</td>
-      <td>Default color. Hex string (eg. 'ff0000') or object for RGB (eg. {r:255, g:0, b:0}) and HSB (eg. {h:0, s:100, b:100}). Default: '11ff00'</td>
+      <td>Default color. Hex string (eg. 'ff0000') or object for RGB (eg. {r:255, g:0, b:0}) and HSB (eg. {h:0, s:100, b:100}). String 'auto' to read color from the element's value attribute. Default: 'auto'</td>
     </tr>
     <tr>
       <td>showEvent</td><td>string</td>
@@ -104,26 +104,69 @@ For more examples see [Usage examples](example/index.html).
   </tbody>
 </table>
 
-<h2>Layouts</h2>
+
+##jQuery.fn Functions##
 <table>
-  <tr>
-    <td>full:</td>
-    <td><img src="http://colpick.com/images/colpick_full.jpg" alt="colpick full layout"/></td>
-  </tr>
-  <tr>
-    <td>rgbhex:</td>
-    <td><img src="http://colpick.com/images/colpick_rgbhex.jpg" alt="colpick rgbhex layout"/></td>
-  </tr>
-  <tr>
-    <td>hex:</td>
-    <td><img src="http://colpick.com/images/colpick_hex.jpg" alt="colpick hex layout"/></td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>colpick(options)</td>
+      <td>The main function used to create a color picker.</td>
+    </tr>
+    <tr>
+      <td>colpickHide()</td>
+      <td>Hides the color picker. Accepts no arguments. Use it to hide the picker with an external trigger.</td>
+    </tr>
+    <tr>
+      <td>colpickShow()</td>
+      <td>Shows the color picker. Accepts no arguments. Use it to show the picker with an external trigger.</td>
+    </tr>
+    <tr>
+      <td>colpickSetColor(col,setCurrent)</td>
+      <td>Use it to set the picker color. The onChange callback is fired with bySetColor set to true. Parameters:
+        <ul>
+          <li>col: a hex string (eg. 'd78b5a') or object for RGB (eg. {r:255, g:0, b:0}) and HSB (eg. {h:150, s:50, b:50})</li>
+          <li>setCurrent: If true the color picker's current color (the one to the right in layouts with submit button) is set in addition to the new color, which is always set.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    
+##Layouts##
+<table>
+  <thead>
+    <tr>
+      <th>Layout</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>full:</td>
+        <td><img src="http://colpick.com/images/colpick_full.jpg" alt="colpick full layout"/></td>
+      </tr>
+      <tr>
+        <td>rgbhex:</td>
+        <td><img src="http://colpick.com/images/colpick_rgbhex.jpg" alt="colpick rgbhex layout"/></td>
+      </tr>
+      <tr>
+        <td>hex:</td>
+        <td><img src="http://colpick.com/images/colpick_hex.jpg" alt="colpick hex layout"/></td>
+      </tr>
+  </tbody>
 </table>
 
 
 ##Changes to josedvq's version##
-* **Polyfill**: New option 'polyfill' to work with native color input fields
-* **Fixed Issues** [#16](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/16), [#17](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/17)
+* **Polyfill:** New option 'polyfill' to work with native color input fields
+* **Auto color:** Get the default color from an element's 'value' attribute using jQuery function .val()
+* **Fixed Issues:** [#16](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/16), [#17](https://github.com/josedvq/colpick-jQuery-Color-Picker/issues/17)
 
 
 Dual licensed under the MIT and GPL licenses.
