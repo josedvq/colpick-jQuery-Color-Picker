@@ -28,7 +28,7 @@ For usage and examples: colpick.com/plugin
 				onChange: function () {},
 				onSubmit: function () {},
 				colorScheme: 'light',
-				color: '3289c7',
+				color: 'auto',
 				livePreview: true,
 				flat: false,
 				layout: 'full',
@@ -325,7 +325,8 @@ For usage and examples: colpick.com/plugin
 			init: function (opt) {
 				opt = $.extend({}, defaults, opt||{});
 				//Set color
-				if (typeof opt.color == 'string') {
+                if (opt.color === 'auto') {
+				} else if (typeof opt.color == 'string') {
 					opt.color = hexToHsb(opt.color);
 				} else if (opt.color.r != undefined && opt.color.g != undefined && opt.color.b != undefined) {
 					opt.color = rgbToHsb(opt.color);
@@ -340,18 +341,17 @@ For usage and examples: colpick.com/plugin
 					//If the element does not have an ID
 					if (!$(this).data('colpickId')) {
 						var options = $.extend({}, opt);
-						options.origColor = opt.color;
-                        
-                        // Set polyfill
+                        //Color
+                        if (opt.color === 'auto') {
+                            options.color = $(this).val() ? hexToHsb($(this).val()) : {h:0,s:0,b:0};
+                        }
+						options.origColor = options.color;
+
+                        //Polyfill
                         if (typeof opt.polyfill == 'function') {
                             options.polyfill = opt.polyfill(this);
                         }
-                        
-                        //Input field operations
-                        options.input = $(this).is('input');
-                        
-                        //Polyfill fixes
-                        if (options.polyfill && options.input && this.type === "color") {
+                        if (options.polyfill && $(this).is('input') && this.type === "color") {
                             return;
                         }
                         

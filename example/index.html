@@ -21,7 +21,7 @@
     
     <h3>Button</h3>
     <p>
-        <button id="example-button">Show Color Picker</button>
+        <button id="example-button" value="#00FF00">Show Color Picker</button>
     </p>
     <p>
         <code>$('#example-button').colpick();</code>
@@ -37,12 +37,14 @@
     </p>
     <p>
         <code>$('#example-flat').colpick({
+    color:'123456',
     flat:true,
     layout:'hex'
 });</code>
     </p>
     <script>
     $('#example-flat').colpick({
+        color:'123456',
         flat:true,
         layout:'hex'
     });
@@ -51,7 +53,7 @@
     
     <h3>Text Input and colorScheme 'dark'</h3>
     <p>
-        <input type="text" id="example-text" value="#FF0000">
+        <input type="text" id="example-text" value="#0000FF">
     </p>
     <p>
         <code>$('#example-text').colpick({
@@ -76,7 +78,6 @@
     </p>
     <p>
         <code>$('#example-color').colpick({
-    color:'#FF0000',
     onSubmit:function(hsb,hex,rgb,el,bySetColor) {
         $(el).val('#'+hex);
         $(el).colpickHide();
@@ -85,7 +86,6 @@
     </p>
     <script>
         $('#example-color').colpick({
-            color:'#FF0000',
             onSubmit:function(hsb,hex,rgb,el,bySetColor) {
                 $(el).val('#'+hex);
                 $(el).colpickHide();
