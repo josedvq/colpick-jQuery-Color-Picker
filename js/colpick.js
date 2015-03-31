@@ -373,15 +373,15 @@ For usage and examples: colpick.com/plugin
 						setNewColor(options.color, cal.get(0));
 						//Append to body if flat=false, else show in place
 						if (options.flat) {
-							cal.appendTo(this).show();
-							cal.css({
+							cal.appendTo(options.appendTo || this).show();
+							cal.css(options.styles || {
 								position: 'relative',
 								display: 'block'
 							});
 						} else {
-							cal.appendTo(document.body);
+							cal.appendTo(options.appendTo || document.body);
 							$(this).on(options.showEvent, show);
-							cal.css({
+							cal.css(options.styles || {
 								position:'absolute'
 							});
 						}
