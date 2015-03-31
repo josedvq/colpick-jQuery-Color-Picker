@@ -407,7 +407,13 @@ For usage and examples: colpick.com/plugin
 			//Sets a color as new and current (default)
 			setColor: function(col, setCurrent) {
 				setCurrent = (typeof setCurrent === "undefined") ? 1 : setCurrent;
-				if (typeof col == 'string') {
+				if ((typeof col == 'string') || (typeof col == 'number')) {
+					if (typeof col == 'number') {
+						col = col.toString();
+						if (col.length == 3) {
+							col = col+col;
+						}
+					}
 					col = hexToHsb(col);
 				} else if (col.r != undefined && col.g != undefined && col.b != undefined) {
 					col = rgbToHsb(col);
