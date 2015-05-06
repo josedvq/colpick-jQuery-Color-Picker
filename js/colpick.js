@@ -175,9 +175,9 @@ For usage and examples: colpick.com/plugin
 				$(document).on('mouseup touchend',current,upSelector);
 				$(document).on('mousemove touchmove',current,moveSelector);
 
-				var payeX,pageY;
+				var pageX,pageY;
 				if(ev.type == 'touchstart') {
-					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageX = ev.originalEvent.changedTouches[0].pageX;
 					pageY = ev.originalEvent.changedTouches[0].pageY;
 				} else {
 					pageX = ev.pageX;
@@ -194,9 +194,9 @@ For usage and examples: colpick.com/plugin
 				return false;
 			},
 			moveSelector = function (ev) {
-				var payeX,pageY;
+				var pageX,pageY;
 				if(ev.type == 'touchmove') {
-					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageX = ev.originalEvent.changedTouches[0].pageX;
 					pageY = ev.originalEvent.changedTouches[0].pageY;
 				} else {
 					pageX = ev.pageX;
