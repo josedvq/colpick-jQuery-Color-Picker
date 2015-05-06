@@ -289,6 +289,13 @@ For usage and examples: colpick.com/plugin
 				}
 				return hex;
 			},
+			getUniqueID = (function () {
+				var cnt = 0;
+				return function () {
+					cnt += 1;
+					return cnt;
+				};
+			})(),
 			restoreOriginal = function () {
 				var cal = $(this).parent();
 				var col = cal.data('colpick').origColor;
@@ -321,7 +328,7 @@ For usage and examples: colpick.com/plugin
 						var options = $.extend({}, opt);
 						options.origColor = opt.color;
 						//Generate and assign a random ID
-						var id = 'collorpicker_' + parseInt(Math.random() * 1000);
+						var id = 'collorpicker_' + getUniqueID();
 						$(this).data('colpickId', id);
 						//Set the tpl's ID and get the HTML
 						var cal = $(tpl).attr('id', id);
