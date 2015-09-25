@@ -356,7 +356,7 @@ For usage and examples: colpick.com/plugin
 								huebar.append(div);
 							}
 						} else {
-							stopList = stops.join(',');
+							var stopList = stops.join(',');
 							huebar.attr('style','background:-webkit-linear-gradient(top,'+stopList+'); background: -o-linear-gradient(top,'+stopList+'); background: -ms-linear-gradient(top,'+stopList+'); background:-moz-linear-gradient(top,'+stopList+'); -webkit-linear-gradient(top,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
 						}
 						cal.find('div.colpick_hue').on('mousedown touchstart',downHue);
