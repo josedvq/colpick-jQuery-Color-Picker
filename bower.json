@@ -1,0 +1,15 @@
+{
+  "name": "josedvq/colpick-jQuery-Color-Picker",
+  "version": "2.0.2",
+  "homepage": "https://github.com/josedvq/colpick-jQuery-Color-Picker",
+  "description": "colpick is a simple Photoshop-style color picker jQuery plugin. Its interface is familiar for most users and it's also very lightweight loading less than 30 KB to the browser.",
+  "main": "js/colpick.js",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
