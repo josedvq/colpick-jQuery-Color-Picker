@@ -177,7 +177,7 @@ For usage and examples: colpick.com/plugin
 
 				var pageX,pageY;
 				if(ev.type == 'touchstart') {
-					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageX = ev.originalEvent.changedTouches[0].pageX;
 					pageY = ev.originalEvent.changedTouches[0].pageY;
 				} else {
 					pageX = ev.pageX;
@@ -196,7 +196,7 @@ For usage and examples: colpick.com/plugin
 			moveSelector = function (ev) {
 				var pageX,pageY;
 				if(ev.type == 'touchmove') {
-					pageX = ev.originalEvent.changedTouches[0].pageX,
+					pageX = ev.originalEvent.changedTouches[0].pageX;
 					pageY = ev.originalEvent.changedTouches[0].pageY;
 				} else {
 					pageX = ev.pageX;
@@ -289,6 +289,13 @@ For usage and examples: colpick.com/plugin
 				}
 				return hex;
 			},
+			getUniqueID = (function () {
+				var cnt = 0;
+				return function () {
+					cnt += 1;
+					return cnt;
+				};
+			})(),
 			restoreOriginal = function () {
 				var cal = $(this).parent();
 				var col = cal.data('colpick').origColor;
@@ -321,7 +328,7 @@ For usage and examples: colpick.com/plugin
 						var options = $.extend({}, opt);
 						options.origColor = opt.color;
 						//Generate and assign a random ID
-						var id = 'collorpicker_' + parseInt(Math.random() * 1000);
+						var id = 'collorpicker_' + getUniqueID();
 						$(this).data('colpickId', id);
 						//Set the tpl's ID and get the HTML
 						var cal = $(tpl).attr('id', id);
@@ -342,7 +349,7 @@ For usage and examples: colpick.com/plugin
 						//Store parts of the plugin
 						options.el = this;
 						options.hue = cal.find('div.colpick_hue_arrs');
-						huebar = options.hue.parent();
+						var huebar = options.hue.parent();
 						//Paint the hue bar
 						var UA = navigator.userAgent.toLowerCase();
 						var isIE = navigator.appName === 'Microsoft Internet Explorer';
@@ -356,7 +363,7 @@ For usage and examples: colpick.com/plugin
 								huebar.append(div);
 							}
 						} else {
-							stopList = stops.join(',');
+							var stopList = stops.join(',');
 							huebar.attr('style','background:-webkit-linear-gradient(top,'+stopList+'); background: -o-linear-gradient(top,'+stopList+'); background: -ms-linear-gradient(top,'+stopList+'); background:-moz-linear-gradient(top,'+stopList+'); -webkit-linear-gradient(top,'+stopList+'); background:linear-gradient(to bottom,'+stopList+'); ');
 						}
 						cal.find('div.colpick_hue').on('mousedown touchstart',downHue);
@@ -439,7 +446,7 @@ For usage and examples: colpick.com/plugin
 	}();
 	//Color space convertions
 	var hexToRgb = function (hex) {
-		var hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
+		hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
 		return {r: hex >> 16, g: (hex & 0x00FF00) >> 8, b: (hex & 0x0000FF)};
 	};
 	var hexToHsb = function (hex) {
