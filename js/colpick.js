@@ -321,7 +321,7 @@ For usage and examples: colpick.com/plugin
 						var options = $.extend({}, opt);
 						options.origColor = opt.color;
 						//Generate and assign a random ID
-						var id = 'collorpicker_' + parseInt(Math.random() * 1000);
+						var id = 'colorpicker_' + parseInt(Math.random() * 1000);
 						$(this).data('colpickId', id);
 						//Set the tpl's ID and get the HTML
 						var cal = $(tpl).attr('id', id);
