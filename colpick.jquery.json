@@ -1,15 +1,24 @@
 {
 	"name": "colpick",
 	"title": "colpick Color Picker",
-	"description": "Simple lightweight Photoshop-like color picker, now with touch support",
-	"keywords": ["color","picker","colorpicker","choser","selector","form","jquery","input"],
+	"description": "Simple lightweight Photoshop-like color picker with touch support.",
+	"keywords": ["colpick", "color","picker","colorpicker","chooser","selector","form","jquery","input"],
 	"version": "2.0.2",
 	"author": {"name": "Jose Vargas","email": "josedvq@gmail.com", "url": "http://codeitdown.com"},
-	"maintainers": [{"name": "Jose Vargas","email": "josedvq@gmail.com", "url": "http://codeitdown.com"}],
-	"licenses": [{"type": "GPLv2", "url": "https://github.com/josedvq/colpick-jQuery-Color-Picker/blob/master/LICENSE"}],
-	"bugs": "https://github.com/josedvq/colpick-jQuery-Color-Picker/issues",
-	"homepage": "http://colpick.com/plugin",
-	"docs": "http://colpick.com/plugin",
-	"download": "https://github.com/josedvq/colpick-jQuery-Color-Picker/archive/master.zip",
+	"maintainers": [{"name": "Moritz Kornher","email": "mail@moritzkornher.de"}],
+	"licenses": [
+      {
+        "type": "MIT",
+        "url": "https://github.com/mrgrain/colpick/blob/master/LICENSE"
+      },
+      {
+        "type": "GPLv2",
+        "url": "https://github.com/mrgrain/colpick/blob/master/LICENSE"
+      }
+    ],
+	"bugs": "https://github.com/mrgrain/colpick/issues",
+	"homepage": "https://github.com/mrgrain/colpick",
+	"docs": "https://github.com/mrgrain/colpick",
+	"download": "https://github.com/mrgrain/colpick/archive/2.0.2.zip",
 	"dependencies": {"jquery": ">=1.7.0"}
 }
