@@ -229,8 +229,10 @@ For usage and examples: colpick.com/plugin
 			},
 			//Show/hide the color picker
 			show = function (ev) {
-				// Prevent the trigger of any direct parent
-				ev.stopPropagation();
+				if(ev) {
+					 // Prevent the trigger of any direct parent
+					ev.stopPropagation();
+				}
 				var cal = $('#' + $(this).data('colpickId'));
 				cal.data('colpick').onBeforeShow.apply(this, [cal.get(0)]);
 				var pos = $(this).offset();
@@ -386,7 +388,7 @@ For usage and examples: colpick.com/plugin
 								display: 'block'
 							});
 						} else {
-							cal.appendTo(document.body);
+							cal.appendTo($(this).parent());
 							$(this).on(options.showEvent, show);
 							cal.css({
 								position:'absolute'
@@ -413,34 +415,35 @@ For usage and examples: colpick.com/plugin
 			},
 			//Sets a color as new and current (default)
 			setColor: function(col, setCurrent) {
-				setCurrent = (typeof setCurrent === "undefined") ? 1 : setCurrent;
-				if (typeof col == 'string') {
-					col = hexToHsb(col);
-				} else if (col.r != undefined && col.g != undefined && col.b != undefined) {
-					col = rgbToHsb(col);
-				} else if (col.h != undefined && col.s != undefined && col.b != undefined) {
-					col = fixHSB(col);
-				} else {
-					return this;
-				}
-				return this.each(function(){
-					if ($(this).data('colpickId')) {
-						var cal = $('#' + $(this).data('colpickId'));
-						cal.data('colpick').color = col;
-						cal.data('colpick').origColor = col;
-						fillRGBFields(col, cal.get(0));
-						fillHSBFields(col, cal.get(0));
-						fillHexFields(col, cal.get(0));
-						setHue(col, cal.get(0));
-						setSelector(col, cal.get(0));
-						
-						setNewColor(col, cal.get(0));
-						cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), cal.data('colpick').el, 1]);
-						if(setCurrent) {
-							setCurrentColor(col, cal.get(0));
-						}
+				if (col != undefined) {
+					setCurrent = (typeof setCurrent === "undefined") ? 1 : setCurrent;
+					if (typeof col == 'string') {
+						col = hexToHsb(col);
+					} else if (col.r != undefined && col.g != undefined && col.b != undefined) {
+						col = rgbToHsb(col);
+					} else if (col.h != undefined && col.s != undefined && col.b != undefined) {
+						col = fixHSB(col);
+					} else {
+						return this;
 					}
-				});
+					return this.each(function(){
+						if ($(this).data('colpickId')) {
+							var cal = $('#' + $(this).data('colpickId'));
+							cal.data('colpick').color = col;
+							cal.data('colpick').origColor = col;
+							fillRGBFields(col, cal.get(0));
+							fillHSBFields(col, cal.get(0));
+							fillHexFields(col, cal.get(0));
+							setHue(col, cal.get(0));
+							setSelector(col, cal.get(0));
+							setNewColor(col, cal.get(0));
+							cal.data('colpick').onChange.apply(cal.parent(), [col, hsbToHex(col), hsbToRgb(col), cal.data('colpick').el, 1]);
+							if(setCurrent) {
+								setCurrentColor(col, cal.get(0));
+							}
+						}
+					});
+				}
 			}
 		};
 	}();
