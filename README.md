@@ -3,7 +3,7 @@ colpick Color Picker
 
 colpick is a simple Photoshop-style color picker jQuery plugin. Its interface is familiar for most users and it's also very lightweight loading less than 30 KB to the browser.
 
-For instructions and examples see: -- back soon --
+For instructions and examples see: http://codeitdown.com/colpick/plugin
 
 <ul>
 			<li><span class="bold">No images!</span> Just a JS and a CSS file</li>
@@ -18,15 +18,15 @@ For instructions and examples see: -- back soon --
 <table>
   <tr>
     <td>full:</td>
-    <td><img src="http://colpick.com/images/colpick_full.jpg" alt="colpick full layout"/></td>
+    <td><img src="http://codeitdown.com/colpick/images/colpick_full2.png" alt="colpick full layout"/></td>
   </tr>
   <tr>
     <td>rgbhex:</td>
-    <td><img src="http://colpick.com/images/colpick_rgbhex.jpg" alt="colpick rgbhex layout"/></td>
+    <td><img src="http://codeitdown.com/colpick/images/colpick_rgbhex2.png" alt="colpick rgbhex layout"/></td>
   </tr>
   <tr>
     <td>hex:</td>
-    <td><img src="http://colpick.com/images/colpick_hex.jpg" alt="colpick hex layout"/></td>
+    <td><img src="http://codeitdown.com/colpick/images/colpick_hex2.png" alt="colpick hex layout"/></td>
   </tr>
 </table>
 
