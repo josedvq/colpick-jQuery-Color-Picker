@@ -300,13 +300,22 @@ For usage and examples: colpick.com/plugin
 			},
 			fixHex = function (hex) {
 				var len = 6 - hex.length;
-				if (len > 0) {
-					var o = [];
-					for (var i=0; i<len; i++) {
-						o.push('0');
+				if (len == 3) {
+					var e = [];
+					for (var j = 0; j < len; j++) {
+						e.push(hex[j]);
+						e.push(hex[j]);
 					}
-					o.push(hex);
-					hex = o.join('');
+					hex = e.join('');
+				} else {
+					if (len > 0) {
+						var o = [];
+						for (var i = 0; i < len; i++) {
+							o.push('0');
+						}
+						o.push(hex);
+						hex = o.join('');
+					}
 				}
 				return hex;
 			},
